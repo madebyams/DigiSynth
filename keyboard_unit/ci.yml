@@ -1,0 +1,11 @@
+image: ghcr.io/anothersimplecoder/cmake:latest
+
+keyboard_unit:build:
+  stage:  build
+  tags:
+    - amd64
+  script:
+    - |
+      cd keyboard_unit
+      cmake --preset Debug
+      cmake --build --preset Debug

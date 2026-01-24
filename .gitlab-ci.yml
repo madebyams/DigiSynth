@@ -3,3 +3,4 @@ stages:
 
 include:
   - local: "central_unit/ci.yml"
+  - local: "keyboard_unit/ci.yml"
