@@ -1,6 +1,5 @@
-image: ghcr.io/anothersimplecoder/aarch64-linux-gcc:latest
-
 central_unit:build:
+  image: ghcr.io/anothersimplecoder/aarch64-linux-gcc:latest
   stage:  build
   tags:
     - amd64

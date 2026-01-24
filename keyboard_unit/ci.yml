@@ -1,6 +1,5 @@
-image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
-
 keyboard_unit:build:
+  image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
   stage:  build
   tags:
     - amd64
