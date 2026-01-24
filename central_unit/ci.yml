@@ -1,0 +1,15 @@
+image: ghcr.io/anothersimplecoder/aarch64-linux-gcc:latest
+
+central_unit:build:
+  stage:  build
+  tags:
+    - amd64
+  script:
+    - |
+      cd central_unit
+      cmake \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+        -DRT_LIBRARIES=/usr/aarch64-linux-gnu/lib/librt.so.1 \
+        -DARM_ROOT=/usr/bin \
+        -S . -B build
+      cmake --build build
