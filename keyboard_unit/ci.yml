@@ -1,4 +1,4 @@
-image: ghcr.io/anothersimplecoder/cmake:latest
+image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
 
 keyboard_unit:build:
   stage:  build
