@@ -46,7 +46,7 @@ bool DAC::play_sine(const float frequency) {
     // fill buffer: interleaved stereo (L,R) with same sample
     for (uint32_t frame = 0; frame < FRAMES; ++frame) {
         float t = static_cast<float>(frame) / static_cast<float>(SAMPLE_RATE);
-        float s = amplitude * std::sinf(2.0f * static_cast<float>(PI) * frequency * t);
+        float s = amplitude * std::sin(2.0f * static_cast<float>(PI) * frequency * t);
         int16_t sample = static_cast<int16_t>(s);
         uint16_t word = static_cast<uint16_t>(static_cast<int16_t>(sample));
         // interleaved channels
