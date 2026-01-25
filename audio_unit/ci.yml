@@ -1,0 +1,10 @@
+audio_unit:build:
+  image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
+  stage:  build
+  tags:
+    - amd64
+  script:
+    - |
+      cd keyboard_unit
+      cmake --preset Debug
+      cmake --build --preset Debug

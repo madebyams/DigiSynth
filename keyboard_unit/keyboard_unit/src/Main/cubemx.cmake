@@ -1,4 +1,3 @@
-
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${include_DIRS}

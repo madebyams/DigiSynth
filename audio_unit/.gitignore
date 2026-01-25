@@ -1,2 +1,4 @@
+.cache
+.settings
+.vscode
 build
-!.settings

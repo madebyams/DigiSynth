@@ -39,7 +39,6 @@ set(cpu_PARAMS )
 # Include directories for all compilers
 set(include_DIRS
 	${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/CMSIS/Include
 )
 
 # Now call generated cmake
