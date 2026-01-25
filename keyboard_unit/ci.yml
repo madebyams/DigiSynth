@@ -6,6 +6,6 @@ keyboard_unit:build:
   script:
     - |
       cd keyboard_unit
-      ls hal/src
+      ls
       cmake -S . -B build --preset Debug
       cmake --build build --preset Debug
