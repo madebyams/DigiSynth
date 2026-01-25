@@ -18,6 +18,9 @@ target_link_libraries(audio_unit PUBLIC
 
     ADSR
     DAC
+    Debug
+    GPIO
+    LED
     MessageBus
     SystemClock
 )

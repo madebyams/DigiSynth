@@ -1,5 +1,8 @@
 add_subdirectory(ADSR)
 add_subdirectory(DAC)
+add_subdirectory(Debug)
+add_subdirectory(GPIO)
+add_subdirectory(LED)
 add_subdirectory(Main)
 add_subdirectory(MessageBus)
 add_subdirectory(SystemClock)
