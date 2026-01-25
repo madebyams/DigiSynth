@@ -6,5 +6,5 @@ keyboard_unit:build:
   script:
     - |
       cd keyboard_unit
-      cmake --preset Debug
-      cmake --build --preset Debug
+      cmake -S . -B build --preset Debug
+      cmake --build build

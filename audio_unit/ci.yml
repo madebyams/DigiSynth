@@ -5,6 +5,6 @@ audio_unit:build:
     - amd64
   script:
     - |
-      cd keyboard_unit
-      cmake --preset Debug
-      cmake --build --preset Debug
+      cd audio_unit
+      cmake -S . -B build --preset Debug
+      cmake --build build
