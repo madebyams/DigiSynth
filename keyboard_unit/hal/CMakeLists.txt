@@ -37,8 +37,6 @@ add_library(HAL
     src/stm32f1xx_hal_sram.c
     src/stm32f1xx_hal_tim.c
     src/stm32f1xx_hal_tim_ex.c
-    src/stm32f1xx_hal_timebase_rtc_alarm_template.c
-    src/stm32f1xx_hal_timebase_tim_template.c
     src/stm32f1xx_hal_uart.c
     src/stm32f1xx_hal_usart.c
     src/stm32f1xx_hal_wwdg.c
