@@ -1,1 +1,5 @@
+add_subdirectory(ADSR)
+add_subdirectory(DAC)
 add_subdirectory(Main)
+add_subdirectory(MessageBus)
+add_subdirectory(SystemClock)

@@ -15,6 +15,11 @@ target_link_libraries(audio_unit PUBLIC
     STM32_Drivers
     ${TOOLCHAIN_LINK_LIBRARIES}
     stm32cubemx
+
+    ADSR
+    DAC
+    MessageBus
+    SystemClock
 )
 
 # Add the map file to the list of files to be removed with 'clean' target
