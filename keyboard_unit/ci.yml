@@ -5,6 +5,5 @@ keyboard_unit:build:
     - amd64
   script:
     - |
-      cd keyboard_unit
       cmake -S . -B build --preset Debug
       cmake --build build --preset Debug
