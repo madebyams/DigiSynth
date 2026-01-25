@@ -2,6 +2,7 @@
 #include "adsr.hh"
 #include "dac.hh"
 #include "debug.hh"
+#include "dma.hh"
 #include "gpio.hh"
 #include "led.hh"
 #include "message_bus.hh"
@@ -11,6 +12,7 @@
 SystemClock clock;
 ADSR adsr;
 DAC dac;
+DMA dma;
 LED led(GPIOA, GPIO_PIN_12);
 MessageBus message_bus;
 
@@ -28,6 +30,10 @@ int main(void) {
   }
 
   if(!Debug::init()) {
+    Error_Handler();
+  }
+
+  if(!dma.init()) {
     Error_Handler();
   }
 

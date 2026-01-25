@@ -1,6 +1,7 @@
 add_subdirectory(ADSR)
 add_subdirectory(DAC)
 add_subdirectory(Debug)
+add_subdirectory(DMA)
 add_subdirectory(GPIO)
 add_subdirectory(LED)
 add_subdirectory(Main)

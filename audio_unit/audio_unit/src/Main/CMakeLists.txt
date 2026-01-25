@@ -19,6 +19,7 @@ target_link_libraries(audio_unit PUBLIC
     ADSR
     DAC
     Debug
+    DMA
     GPIO
     LED
     MessageBus
