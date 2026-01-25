@@ -7,4 +7,4 @@ keyboard_unit:build:
     - |
       cd keyboard_unit
       cmake -S . -B build --preset Debug
-      cmake --build build
+      cmake --build build --preset Debug
