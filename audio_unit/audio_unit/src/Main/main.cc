@@ -17,7 +17,6 @@ LED led(GPIOA, GPIO_PIN_12);
 MessageBus message_bus;
 
 int main(void) {
-
   HAL_Init();
 
 
@@ -54,10 +53,9 @@ int main(void) {
   }
 
   led.toggle();
+  dac.play_sine(440.0f);
 
-  while (true) {
-
-  }
+  while (true) {}
 }
 
 
@@ -70,6 +68,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
+  led.toggle();
   while (true)
   {}
   /* USER CODE END Error_Handler_Debug */
