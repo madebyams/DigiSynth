@@ -53,9 +53,12 @@ int main(void) {
   }
 
   led.toggle();
-  dac.play_sine(440.0f);
+  //dac.play_sine(440.0f);
 
-  while (true) {}
+  while (true) {
+    adsr.read_value();
+    HAL_Delay(200);
+  }
 }
 
 
