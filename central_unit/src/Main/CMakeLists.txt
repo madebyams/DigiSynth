@@ -3,5 +3,5 @@ add_executable(Main
 )
 
 target_link_libraries(Main
-    fmt::fmt
+    Display
 )
