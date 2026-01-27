@@ -61,7 +61,7 @@ void Display::invert() {
     this->inverted = !this->inverted;
 }
 
-void Display::update_screen() const {
+void Display::update_screen() {
     const uint8_t pages = height / 8;
     for (uint8_t m = 0; m < pages; m++) {
         write_command(0xB0 + m);
@@ -99,17 +99,18 @@ void Display::terminate() const {
     gpioTerminate();
 }
 
-void Display::write_command(const uint8_t command) const {
+void Display::write_command(const uint8_t command) {
     i2cWriteByteData(i2c_handle, 0x00, command);
 }
 
-void Display::write_multi(uint8_t reg, const uint8_t* data, uint16_t count) const {
+void Display::write_multi(uint8_t reg, uint8_t* data, uint16_t count) {
+    /*
     char dt[256];
     uint8_t i;
     for(i = 0; i < count; i++)
         dt[1] = data[i];
-
-    i2cWriteBlockData(i2c_handle, reg, dt, count);
+    */
+    i2cWriteBlockData(i2c_handle, reg, reinterpret_cast<char*>(data), count+1);
 }
 
 void Display::draw_pixel(const uint16_t x, uint16_t y, Color color) {

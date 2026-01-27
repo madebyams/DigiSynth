@@ -36,9 +36,9 @@ private:
 
     void draw_pixel(const uint16_t x, uint16_t y, Color color);
     char putc(char ch, const Fonts::FontDef_t* Font, const Color color);
-    void write_command(const uint8_t command) const;
-    void write_multi(uint8_t reg, const uint8_t *data, uint16_t count) const;
-    void update_screen() const;
+    void write_command(const uint8_t command);
+    void write_multi(uint8_t reg, uint8_t *data, uint16_t count);
+    void update_screen();
 };
 
 #endif
