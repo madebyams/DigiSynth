@@ -1,14 +1,14 @@
 add_library(Display STATIC
     Display.cc
-        ../Fonts/Fonts.cc
+    Display_I2C.cc
 )
 
 target_include_directories(Display PUBLIC
-    ${pigpio_SOURCE_DIR}
+    ${fmt_SOURCE_DIR}
 )
 
 target_link_libraries(Display
     Fonts
-    pigpio
+    fmt::fmt
     "-pthread"
 )

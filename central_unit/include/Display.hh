@@ -1,14 +1,13 @@
 #ifndef DISPLAY_HH
 #define DISPLAY_HH
 
-#include <cstdint>
 #include <string>
 
-#include "Display_Commands.hh"
-#include "Fonts/SSD1306_Fonts.hh"
+#include "SSD1306/SSD1306_I2C.hh"
+#include "SSD1306/SSD1306_Commands.hh"
+#include "SSD1306/Fonts/SSD1306_Fonts.hh"
 
-const uint32_t BUS = 2;
-const uint32_t ADDRESS = 0x78;
+const uint32_t ADDRESS = 0x3c;
 
 class Display {
 public:
@@ -17,27 +16,28 @@ public:
         White = 0x01
     };
 
+    explicit Display() : i2c(ADDRESS) {}
     bool init();
     void invert();
     void fill(Color color);
     char puts(const char* str, Fonts::FontDef_t* Font, Color color);
-    void terminate() const;
+    void terminate();
 
 private:
     bool inverted = false;
-    int i2c_handle = 0;
     uint32_t x_cursor = 0;
     uint32_t y_cursor = 0;
     static constexpr uint32_t width = 128;
     static constexpr uint32_t height = 32;
     uint8_t buffer[width * height / 8] = {};
 
+    using I2C = SSD1306::I2C;
+    I2C i2c;
+
     using Commands = SSD1306::Commands;
 
-    void draw_pixel(const uint16_t x, uint16_t y, Color color);
-    char putc(char ch, const Fonts::FontDef_t* Font, const Color color);
-    void write_command(const uint8_t command);
-    void write_multi(uint8_t reg, uint8_t *data, uint16_t count);
+    void draw_pixel(uint16_t x, uint16_t y, Color color);
+    char putc(char ch, const Fonts::FontDef_t* Font, Color color);
     void update_screen();
 };
 

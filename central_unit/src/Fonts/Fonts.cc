@@ -1,8 +1,8 @@
-#include "Fonts/SSD1306_Fonts.hh"
+#include "SSD1306/Fonts/SSD1306_Fonts.hh"
 
-#include "Fonts/7x10.hh"
-#include "Fonts/11x18.hh"
-#include "Fonts/16x26.hh"
+#include "SSD1306/Fonts/7x10.hh"
+#include "SSD1306/Fonts/11x18.hh"
+#include "SSD1306/Fonts/16x26.hh"
 
 #include <cstring>
 
