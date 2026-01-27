@@ -1,16 +1,22 @@
-add_executable(${CMAKE_PROJECT_NAME}
-    main.cc
-    
-    syscall.c
-	sysmem.c
-
-	startup_stm32f103xx.S
-    system_stm32f1xx.c
+add_executable(keyboard_unit
+    main.cc          
+    stm32f1xx_hal_msp.c
+    stm32f1xx_it.c
+    syscalls.c
+    sysmem.c
+    startup_stm32f103xb.s
 )
 
-include(cubemx.cmake)
+target_link_libraries(keyboard_unit PUBLIC 
+    STM32_Drivers
+    ${TOOLCHAIN_LINK_LIBRARIES}
+    stm32cubemx
 
-target_link_libraries(${CMAKE_PROJECT_NAME}
-    Debug
     SystemClock
+    GPIO
+    I2C
 )
+
+set_target_properties(keyboard_unit PROPERTIES ADDITIONAL_CLEAN_FILES keyboard_unit.map)
+
+list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)

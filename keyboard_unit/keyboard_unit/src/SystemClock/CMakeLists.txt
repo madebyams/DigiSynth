@@ -3,6 +3,6 @@ add_library(SystemClock
 )
 
 target_link_libraries(SystemClock
-    mcu_flags
-    HAL
+    STM32_Drivers
+    stm32cubemx
 )

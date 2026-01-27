@@ -1,4 +1,4 @@
-keyboard_unit:build:
+audio_unit:build:
   image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
   stage:  build
   tags:

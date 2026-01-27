@@ -1,3 +1,4 @@
-add_subdirectory(Debug)
+add_subdirectory(GPIO)
+add_subdirectory(I2C)
 add_subdirectory(Main)
 add_subdirectory(SystemClock)

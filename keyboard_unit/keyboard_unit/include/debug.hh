@@ -1,3 +1,0 @@
-namespace Debug {
-    void init();
-};
