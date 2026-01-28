@@ -32,6 +32,7 @@ int main(void) {
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     keys.react(GPIO_Pin);
 }
+
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None

@@ -4,7 +4,6 @@ add_executable(keyboard_unit
     stm32f1xx_it.c
     syscalls.c
     sysmem.c
-    interrupt_callback.cc
     startup_stm32f103xb.s
 )
 
