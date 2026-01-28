@@ -4,6 +4,7 @@ add_executable(keyboard_unit
     stm32f1xx_it.c
     syscalls.c
     sysmem.c
+    interrupt_callback.cc
     startup_stm32f103xb.s
 )
 
@@ -15,6 +16,7 @@ target_link_libraries(keyboard_unit PUBLIC
     SystemClock
     GPIO
     I2C
+    Keys
 )
 
 set_target_properties(keyboard_unit PROPERTIES ADDITIONAL_CLEAN_FILES keyboard_unit.map)

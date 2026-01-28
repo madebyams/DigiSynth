@@ -2,15 +2,14 @@
 #include "main.h"
 #include "gpio.hh"
 #include "i2c.hh"
+#include "keys.hh"
 #include "system_clock.hh"
 
-SystemClock clock;
-I2C i2c;
+static SystemClock clock;
+static I2C i2c;
+static Keys keys(i2c);
 
-int main(void)
-{
-
-
+int main(void) {
   HAL_Init();
 
   if(!clock.init()) {
@@ -30,7 +29,9 @@ int main(void)
   }
 }
 
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    keys.react(GPIO_Pin);
+}
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
