@@ -3,6 +3,7 @@
 #include "gpio.hh"
 #include "i2c.hh"
 #include "keys.hh"
+#include "stm32f1xx_hal.h"
 #include "system_clock.hh"
 
 static SystemClock clock;
@@ -25,7 +26,8 @@ int main(void) {
   }
 
   while (true){
-
+    i2c.print("Hello world!");
+    HAL_Delay(200);
   }
 }
 

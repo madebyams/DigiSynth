@@ -8,7 +8,6 @@ class I2C {
     I2C_HandleTypeDef hi2c1;
 public:
     bool init();
-    bool is_ready();
     void print(std::string text);
 };
 
