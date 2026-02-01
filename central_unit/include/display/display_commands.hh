@@ -4,8 +4,7 @@
 
 #ifndef SSD1306_SSD1306_COMMANDS_HH
 #define SSD1306_SSD1306_COMMANDS_HH
-namespace SSD1306 {
-    enum Commands {
+enum commands {
         DISPLAY_OFF                    = 0xAE, // display off
         SET_MEMORY_ADDRESSING_MODE     = 0x20, // Set Memory Addressing Mode (followed by a mode byte)
         MEMORY_ADDRESSING_ARG          = 0x10, // (used in your sequence) addressing-mode argument / or high column in another context
@@ -44,5 +43,4 @@ namespace SSD1306 {
         NORMALDISPLAY = 0xA6,
         INVERTDISPLAY= 0xA7,
     };
-}
 #endif //SSD1306_SSD1306_COMMANDS_HH

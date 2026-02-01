@@ -10,7 +10,7 @@
 
 #include <fmt/base.h>
 
-#include "SSD1306/SSD1306_I2C.hh"
+#include "../../include/display/display_i2c.hh"
 #include "SSD1306/SSD1306_Registers.hh"
 
 using namespace SSD1306;

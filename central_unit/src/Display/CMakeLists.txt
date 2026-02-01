@@ -1,5 +1,5 @@
 add_library(Display STATIC
-    Display.cc
+        Display.cc
     Display_I2C.cc
 )
 
