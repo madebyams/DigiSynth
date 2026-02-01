@@ -16,6 +16,7 @@ target_link_libraries(keyboard_unit PUBLIC
     GPIO
     I2C
     Keys
+    uart
 )
 
 set_target_properties(keyboard_unit PROPERTIES ADDITIONAL_CLEAN_FILES keyboard_unit.map)

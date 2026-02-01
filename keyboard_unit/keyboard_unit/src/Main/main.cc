@@ -5,10 +5,12 @@
 #include "keys.hh"
 #include "stm32f1xx_hal.h"
 #include "system_clock.hh"
+#include "uart.hh"
 
 static SystemClock clock;
 static I2C i2c;
-static Keys keys(i2c);
+static UART uart;
+static Keys keys(uart, i2c);
 
 int main(void) {
   HAL_Init();
@@ -21,14 +23,15 @@ int main(void) {
     Error_Handler();
   }
 
+  if(!uart.init()) {
+    Error_Handler();
+  }
+
   if(!i2c.init()) {
     Error_Handler();
   }
 
-  while (true){
-    i2c.print("Hello world!");
-    HAL_Delay(200);
-  }
+  while (true){}
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {

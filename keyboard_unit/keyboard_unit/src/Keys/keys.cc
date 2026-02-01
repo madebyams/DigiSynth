@@ -4,62 +4,74 @@
 void Keys::react(uint16_t GPIO_Pin) {
     switch(GPIO_Pin) {
         case GPIO_PIN_2: {
-            i2c.print("C\n");
+            uart.print("C\r\n");
+            i2c.print("C\r\n");
             break;
         }
     
         case GPIO_PIN_3: {
-            i2c.print("D\n");
+            uart.print("D\r\n");
+            i2c.print("D\r\n");
             break;
         }
 
         case GPIO_PIN_4: {
-            i2c.print("E\n");
+            uart.print("E\r\n");
+            i2c.print("E\r\n");
             break;
         }
     
         case GPIO_PIN_5: {
-            i2c.print("F\n");
+            uart.print("F\r\n");
+            i2c.print("F\r\n");
             break;
         }
     
         case GPIO_PIN_6: {
-            i2c.print("G\n");
+            uart.print("G\r\n");
+            i2c.print("G\r\n");
             break;
         }
 
         case GPIO_PIN_7: {
-            i2c.print("A\n");
+            uart.print("A\r\n");
+            i2c.print("A\r\n");
             break;
         }
 
         case GPIO_PIN_0: {
-            i2c.print("B\n");
+            uart.print("B\r\n");
+            i2c.print("B\r\n");
             break;
         }
     
         case GPIO_PIN_1: {
-            i2c.print("C#\n");
+            uart.print("C#\r\n");
+            i2c.print("C#\r\n");
             break;
         }
 
         case GPIO_PIN_12: {
-            i2c.print("D#\n");
+            uart.print("D#\r\n");
+            i2c.print("D#\r\n");
             break;
         }
     
         case GPIO_PIN_13: {
-            i2c.print("F#\n");
+            uart.print("F#\r\n");
+            i2c.print("F#\r\n");
             break;
         }
     
         case GPIO_PIN_14: {
-            i2c.print("G#\n");
+            uart.print("G#\r\n");
+            i2c.print("G#\r\n");
             break;
         }
 
         case GPIO_PIN_15: {
-            i2c.print("A#\n");
+            uart.print("A#\r\n");
+            i2c.print("A#\r\n");
             break;
         }
     }
