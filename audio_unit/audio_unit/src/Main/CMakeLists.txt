@@ -24,6 +24,7 @@ target_link_libraries(audio_unit PUBLIC
     LED
     MessageBus
     SystemClock
+    UART
 )
 
 # Add the map file to the list of files to be removed with 'clean' target

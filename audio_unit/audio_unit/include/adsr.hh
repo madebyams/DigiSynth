@@ -1,8 +1,12 @@
 #ifndef ADSR_HH
 #define ADSR_HH
 
-#include "stm32f4xx_hal.h"
 #include <cstdint>
+#include <cstdio>
+#include <string>
+
+#include "stm32f4xx_hal.h"
+
 
 constexpr uint32_t ADC_TIMEOUT = 1000;
 constexpr uint8_t ADC_CHANNELS = 4;
@@ -14,11 +18,14 @@ public:
         uint16_t decay;
         uint16_t sustain;
         uint16_t release;
+
+        std::string to_string();
     };
 
     bool init();
     void read_value();
     Envelope get_envelope();
+    
 private:
     ADC_HandleTypeDef hadc1;
     uint16_t values[ADC_CHANNELS];

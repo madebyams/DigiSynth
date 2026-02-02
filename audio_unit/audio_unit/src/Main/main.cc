@@ -8,6 +8,7 @@
 #include "message_bus.hh"
 #include "stm32f4xx_hal.h"
 #include "system_clock.hh"
+#include "uart.hh"
 
 SystemClock clock;
 ADSR adsr;
@@ -15,6 +16,7 @@ DAC dac;
 DMA dma;
 LED led(GPIOA, GPIO_PIN_12);
 MessageBus message_bus;
+UART uart;
 
 int main(void) {
   HAL_Init();
@@ -29,6 +31,10 @@ int main(void) {
   }
 
   if(!Debug::init()) {
+    Error_Handler();
+  }
+
+  if(!uart.init()) {
     Error_Handler();
   }
 
@@ -57,6 +63,7 @@ int main(void) {
 
   while (true) {
     adsr.read_value();
+    uart.print(adsr.get_envelope().to_string());
     HAL_Delay(200);
   }
 }

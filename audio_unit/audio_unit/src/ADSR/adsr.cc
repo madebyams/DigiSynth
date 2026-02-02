@@ -2,6 +2,7 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_hal_adc.h"
 
+
 bool ADSR::init() {
     ADC_ChannelConfTypeDef sConfig = {0};
 
@@ -82,4 +83,21 @@ void ADSR::read_value() {
 
 ADSR::Envelope ADSR::get_envelope() {
     return this->envelope;
+}
+
+std::string ADSR::Envelope::to_string() {
+    char buf[128];
+    std::snprintf(
+        buf,
+        sizeof(buf),
+        "{\r\n"
+        "\"attack\": %u,\r\n"
+        "\"decay\": %u,\r\n"
+        "\"sustain\": %u,\r\n"
+        "\"release\": %u\r\n"
+        "}\r\n",
+        attack, decay, sustain, release
+    );
+
+    return std::string(buf);
 }
