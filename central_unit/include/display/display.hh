@@ -3,10 +3,10 @@
 
 #include <string>
 
-#include "display_i2c.hh"
-#include "../SSD1306/Fonts/SSD1306_Fonts.hh"
+#include "display_transport.hh"
+#include "fonts/fonts.hh"
 
-constexpr uint32_t ADDRESS = 0x3c;
+using transport = display_transport;
 
 class display {
 public:
@@ -15,7 +15,7 @@ public:
         White = 0x01
     };
 
-    explicit display() : i2c(ADDRESS) {}
+    explicit display(i2c& i2c) : transport_(i2c) {}
     bool init();
     void invert();
     void fill(color color);
@@ -30,8 +30,7 @@ private:
     static constexpr uint32_t height = 32;
     uint8_t buffer[width * height / 8] = {};
 
-    using I2C = SSD1306::I2C;
-    I2C i2c;
+    display_transport transport_;
 
     void draw_pixel(uint16_t x, uint16_t y, color color);
     char putc(char ch, const Fonts::FontDef_t* Font, color color);
