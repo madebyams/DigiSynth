@@ -37,10 +37,19 @@ bool i2c::select(uint8_t address) {
     return true;
 }
 
-bool i2c::transmit(uint8_t* data, uint32_t count) {
-    if (ssize_t err = write(this->handle_, data, count); err < 0) {
-        fmt::print(stderr, "Error writing data ({})\n", strerror(errno));;
-        this->terminate();
+bool i2c::receive(uint8_t* buffer, uint32_t size) {
+    if (ssize_t err = read(this->handle_, buffer, size); err < 0) {
+        fmt::print(stderr, "Error receiving data ({})\n", strerror(errno));
+
+        return false;
+    }
+
+    return true;
+}
+
+bool i2c::transmit(uint8_t* data, uint32_t size) {
+    if (ssize_t err = write(this->handle_, data, size); err < 0) {
+        fmt::print(stderr, "Error transmitting data ({})\n", strerror(errno));
 
         return false;
     }

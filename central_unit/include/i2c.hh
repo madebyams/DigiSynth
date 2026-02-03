@@ -12,7 +12,8 @@ class i2c {
 public:
     bool init();
     bool select(uint8_t address);
-    bool transmit(uint8_t* data, uint32_t count);
+    bool receive(uint8_t* buffer, uint32_t size);
+    bool transmit(uint8_t* data, uint32_t size);
     bool terminate();
 };
 #endif //CENTRAL_UNIT_I2C_HPP
