@@ -1,8 +1,12 @@
-audio_unit:build:
+keyboard_unit:build:
   image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
   stage:  build
   tags:
     - amd64
+  cache:
+    key: keyboard_unit-fetchcontent
+    paths:
+      - keyboard_unit/build/_deps
   script:
     - |
       cd keyboard_unit

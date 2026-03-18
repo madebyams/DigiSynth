@@ -3,6 +3,10 @@ audio_unit:build:
   stage:  build
   tags:
     - amd64
+  cache:
+    key: audio_unit-fetchcontent
+    paths:
+      - audio_unit/build/_deps
   script:
     - |
       cd audio_unit
