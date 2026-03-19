@@ -18,7 +18,7 @@ class PigpioRecipe(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(build_script_folder="src")
+        cmake.configure(build_script_folder="src", variables={"CMAKE_POLICY_VERSION_MINIMUM": "3.5"})
         cmake.build()
 
     def package(self):
