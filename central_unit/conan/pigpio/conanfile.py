@@ -1,3 +1,4 @@
+import os
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
 
@@ -17,10 +18,22 @@ class PigpioRecipe(ConanFile):
         self.run(f"git clone --branch v{self.version} https://github.com/joan2937/pigpio.git src")
 
     def build(self):
+        # Patch broken FindRT.cmake: original unconditionally calls set_target_properties
+        # even when RT is not found, which fails during cross-compilation.
+        find_rt_path = os.path.join(self.source_folder, "src", "cmake", "FindRT.cmake")
+        with open(find_rt_path, "w") as f:
+            f.write(
+                'find_library(RT_LIBRARIES NAMES rt)\n'
+                'include(FindPackageHandleStandardArgs)\n'
+                'find_package_handle_standard_args(RT DEFAULT_MSG RT_LIBRARIES)\n'
+                'if(RT_FOUND)\n'
+                '    add_library(RT::RT UNKNOWN IMPORTED)\n'
+                '    set_target_properties(RT::RT PROPERTIES IMPORTED_LOCATION "${RT_LIBRARIES}")\n'
+                'endif()\n'
+            )
         cmake = CMake(self)
         cmake.configure(build_script_folder="src", variables={
             "CMAKE_POLICY_VERSION_MINIMUM": "3.5",
-            "RT_LIBRARIES": "",
         })
         cmake.build()
 
