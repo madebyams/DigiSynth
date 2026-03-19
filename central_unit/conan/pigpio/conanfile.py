@@ -24,11 +24,13 @@ class PigpioRecipe(ConanFile):
         with open(find_rt_path, "w") as f:
             f.write(
                 'find_library(RT_LIBRARIES NAMES rt)\n'
-                'include(FindPackageHandleStandardArgs)\n'
-                'find_package_handle_standard_args(RT DEFAULT_MSG RT_LIBRARIES)\n'
-                'if(RT_FOUND)\n'
+                'if(RT_LIBRARIES)\n'
+                '    set(RT_FOUND TRUE)\n'
                 '    add_library(RT::RT UNKNOWN IMPORTED)\n'
                 '    set_target_properties(RT::RT PROPERTIES IMPORTED_LOCATION "${RT_LIBRARIES}")\n'
+                'else()\n'
+                '    set(RT_FOUND FALSE)\n'
+                '    set(RT_LIBRARIES "")\n'
                 'endif()\n'
             )
         cmake = CMake(self)
