@@ -6,7 +6,7 @@
 #include <fmt/base.h>
 
 #include "display/display.hh"
-#include "display/fonts/fonts.hh"
+#include "display/Fonts/fonts.hh"
 
 #define KEYBOARD_INTERRUPT_PIN 4
 
