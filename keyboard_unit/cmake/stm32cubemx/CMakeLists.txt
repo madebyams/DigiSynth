@@ -11,19 +11,19 @@ set(MX_Defines_Syms
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/../../keyboard_unit/src/Main/system_stm32f1xx.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_gpio_ex.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_i2c.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_rcc.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_rcc_ex.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_gpio.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_dma.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_cortex.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_pwr.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_flash.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_flash_ex.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_exti.c
+    ${stm32f1xx_hal_driver_SOURCE_DIR}/Src/stm32f1xx_hal_uart.c
 )
 
 # Interface library for includes and symbols

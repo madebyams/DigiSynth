@@ -7,13 +7,13 @@
 #include "uart.hh"
 
 class Keys {
-    UART& uart;
-    I2C& i2c;
+    const UART& uart;
+    const I2C& i2c;
 public:
-    explicit Keys(UART& uart, I2C& i2c)
+    explicit Keys(const UART& uart, const I2C& i2c)
         : uart(uart), i2c(i2c) {}
 
-    void react(uint16_t GPIO_Pin);
+    void react(uint16_t GPIO_Pin) const;
 };
 
 extern "C" {

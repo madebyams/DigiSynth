@@ -7,5 +7,5 @@ class UART {
     UART_HandleTypeDef huart1;
 public:
     bool init();
-    void print(std::string message);
+    void print(std::string message) const;
 };

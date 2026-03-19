@@ -18,9 +18,9 @@ bool UART::init() {
     return HAL_UART_Init(&huart1) == HAL_OK;
 }
 
-void UART::print(std::string message) {
+void UART::print(std::string message) const {
     // Send the message via TX (PA9)
-    HAL_StatusTypeDef status = HAL_UART_Transmit(&huart1, reinterpret_cast<const uint8_t *>(message.c_str()), message.length(), 1000);
+    HAL_StatusTypeDef status = HAL_UART_Transmit(const_cast<UART_HandleTypeDef*>(&huart1), reinterpret_cast<const uint8_t *>(message.c_str()), message.length(), 1000);
     if (status != HAL_OK) {
         return;
     }

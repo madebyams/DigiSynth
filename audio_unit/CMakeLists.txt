@@ -25,12 +25,31 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 # Enable CMake support for ASM and C languages
 enable_language(C CXX ASM)
 
+include(FetchContent)
+
+FetchContent_Declare(stm32f4xx_hal_driver
+    GIT_REPOSITORY https://github.com/STMicroelectronics/stm32f4xx_hal_driver.git
+    GIT_TAG        v1.8.3
+    GIT_SHALLOW    TRUE
+)
+FetchContent_Declare(cmsis_device_f4
+    GIT_REPOSITORY https://github.com/STMicroelectronics/cmsis_device_f4.git
+    GIT_TAG        v2.6.9
+    GIT_SHALLOW    TRUE
+)
+FetchContent_Declare(cmsis_core
+    GIT_REPOSITORY https://github.com/STMicroelectronics/cmsis_core.git
+    GIT_TAG        v5.6.0_cm4
+    GIT_SHALLOW    TRUE
+)
+FetchContent_MakeAvailable(stm32f4xx_hal_driver cmsis_device_f4 cmsis_core)
+
 include_directories(
     ./audio_unit/include
-    ./drivers/STM32F4xx_HAL_Driver/Inc
-    ./drivers/STM32F4xx_HAL_Driver/Inc/Legacy
-    ./drivers/CMSIS/Device/ST/STM32F4xx/Include
-    ./drivers/CMSIS/Include
+    ${stm32f4xx_hal_driver_SOURCE_DIR}/Inc
+    ${stm32f4xx_hal_driver_SOURCE_DIR}/Inc/Legacy
+    ${cmsis_device_f4_SOURCE_DIR}/Include
+    ${cmsis_core_SOURCE_DIR}/Core/Include
 )
 
 # Add STM32CubeMX generated sources
