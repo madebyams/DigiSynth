@@ -1,11 +1,12 @@
 central_unit:build:
-  image: ghcr.io/anothersimplecoder/aarch64-linux-gcc:latest
+  image: git.anothersimplecoder.de:5050/anothersimplecoder/dev-containers/aarch64-linux:latest
   stage:  build
   tags:
     - amd64
   script:
-    - |
-      cd central_unit
-      python3 build.py --ci
-
-      
+    - cd central_unit
+    - conan profile detect --force
+    - conan export conan/pigpio --name=pigpio --version=79
+    - conan install . --profile:host=conan/rpi.ci.profile --profile:build=default --build=missing
+    - cmake --preset conan-release
+    - cmake --build --preset conan-release

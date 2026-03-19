@@ -8,5 +8,5 @@ compiler.libcxx=libstdc++11
 build_type=Release
 
 [buildenv]
-CC=./aarch64-unknown-linux-gnu/bin/aarch64-linux-gnu-gcc
-CXX=./aarch64-unknown-linux-gnu/bin/aarch64-linux-gnu-g++
+CC=/Users/ams/dev/DigiSynth/central_unit/aarch64-unknown-linux-gnu/bin/aarch64-linux-gnu-gcc
+CXX=/Users/ams/dev/DigiSynth/central_unit/aarch64-unknown-linux-gnu/bin/aarch64-linux-gnu-g++
