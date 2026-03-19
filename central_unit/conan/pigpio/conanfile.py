@@ -31,6 +31,7 @@ class PigpioRecipe(ConanFile):
                 'else()\n'
                 '    set(RT_FOUND FALSE)\n'
                 '    set(RT_LIBRARIES "")\n'
+                '    add_library(RT::RT INTERFACE IMPORTED)\n'
                 'endif()\n'
             )
         cmake = CMake(self)
