@@ -11,6 +11,7 @@ keyboard_unit:build:
     paths:
       - .cmsis-packs/
   script:
+    - apt-get install -y --no-install-recommends ninja-build
     - |
       # Install CMSIS-Toolbox
       wget -qO- "https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/${TOOLBOX_VERSION}/cmsis-toolbox-linux-amd64.tar.gz" \
