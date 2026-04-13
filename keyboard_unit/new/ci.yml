@@ -13,7 +13,7 @@ keyboard_unit:build:
   script:
     - |
       # Install CMSIS-Toolbox
-      curl -fsSL "https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/${TOOLBOX_VERSION}/cmsis-toolbox-linux-amd64.tar.gz" \
+      wget -qO- "https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/${TOOLBOX_VERSION}/cmsis-toolbox-linux-amd64.tar.gz" \
         | tar -xz -C /usr/local --strip-components=1
     - |
       # Initialize pack index (skipped if already cached)
