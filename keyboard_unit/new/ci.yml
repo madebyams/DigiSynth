@@ -21,6 +21,11 @@ keyboard_unit:build:
       if [ ! -f "${CMSIS_PACK_ROOT}/.Web/index.pidx" ]; then
         cpackget init https://www.keil.com/pack/index.pidx
       fi
+    - |
+      # Register GCC toolchain with CMSIS-Toolbox
+      GCC_VERSION=$(arm-none-eabi-gcc --version | grep -oP '\d+\.\d+\.\d+' | head -1)
+      GCC_BIN=$(dirname $(which arm-none-eabi-gcc))
+      export GCC_TOOLCHAIN_$(echo $GCC_VERSION | tr '.' '_')="$GCC_BIN"
     - cd keyboard_unit/new
     - cbuild "Keyboard Unit.csolution.yml" --packs --toolchain GCC --context ".Debug+STM32F103C8"
   artifacts:
