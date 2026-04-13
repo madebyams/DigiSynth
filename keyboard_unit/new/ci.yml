@@ -1,0 +1,29 @@
+keyboard_unit:build:
+  image: git.anothersimplecoder.de:5050/anothersimplecoder/dev-containers/arm-none-eabi:latest
+  stage: build
+  tags:
+    - amd64
+  variables:
+    CMSIS_PACK_ROOT: "${CI_PROJECT_DIR}/.cmsis-packs"
+    TOOLBOX_VERSION: "2.13.0"
+  cache:
+    key: keyboard_unit-cmsis-packs
+    paths:
+      - .cmsis-packs/
+  script:
+    - |
+      # Install CMSIS-Toolbox
+      curl -fsSL "https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/${TOOLBOX_VERSION}/cmsis-toolbox-linux-amd64.tar.gz" \
+        | tar -xz -C /usr/local --strip-components=1
+    - |
+      # Initialize pack index (skipped if already cached)
+      mkdir -p "${CMSIS_PACK_ROOT}"
+      if [ ! -f "${CMSIS_PACK_ROOT}/.Web/index.pidx" ]; then
+        cpackget init https://www.keil.com/pack/index.pidx
+      fi
+    - cd keyboard_unit/new
+    - cbuild "Keyboard Unit.csolution.yml" --packs --toolchain GCC --context ".Debug+STM32F103C8"
+  artifacts:
+    paths:
+      - keyboard_unit/new/out/
+    expire_in: 1 week
