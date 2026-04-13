@@ -4,7 +4,7 @@
 #include <string>
 
 #include "display_transport.hh"
-#include "fonts/fonts.hh"
+#include "Fonts/fonts.hh"
 
 using transport = display_transport;
 

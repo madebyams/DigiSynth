@@ -1,5 +1,5 @@
 audio_unit:build:
-  image: ghcr.io/anothersimplecoder/arm-none-eabi:latest
+  image: git.anothersimplecoder.de:5050/anothersimplecoder/dev-containers/arm-none-eabi:latest
   stage:  build
   tags:
     - amd64

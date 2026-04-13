@@ -1,4 +1,4 @@
-add_subdirectory(fonts)
+add_subdirectory(Fonts)
 
 add_library(display STATIC
         display.cc

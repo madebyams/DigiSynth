@@ -2,88 +2,96 @@
 #include "stm32f1xx_hal.h"
 #include "stm32f1xx_hal_gpio.h"
 
-extern "C" void Keys::react(uint16_t GPIO_Pin) {
+extern "C" void trigger_external_interupt(const UART& uart) {
+    uart.print("Interrupted");
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+    HAL_Delay(2);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
+    HAL_Delay(2);
+}
+
+extern "C" void Keys::react(uint16_t GPIO_Pin) const {
     switch(GPIO_Pin) {
         case GPIO_PIN_2: {
-            uart.print("C\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("C\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("C\r\n");
             break;
         }
     
         case GPIO_PIN_3: {
-            uart.print("D\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("D\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("D\r\n");
             break;
         }
 
         case GPIO_PIN_4: {
-            uart.print("E\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("E\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("E\r\n");
             break;
         }
     
         case GPIO_PIN_5: {
-            uart.print("F\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("F\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("F\r\n");
             break;
         }
     
         case GPIO_PIN_6: {
-            uart.print("G\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("G\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("G\r\n");
             break;
         }
 
         case GPIO_PIN_7: {
-            uart.print("A\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("A\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("A\r\n");
             break;
         }
 
         case GPIO_PIN_0: {
-            uart.print("B\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("B\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("B\r\n");
             break;
         }
     
         case GPIO_PIN_1: {
-            uart.print("C#\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("C#\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("C#\r\n");
             break;
         }
 
         case GPIO_PIN_12: {
-            uart.print("D#\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("D#\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("D#\r\n");
             break;
         }
     
         case GPIO_PIN_13: {
-            uart.print("F#\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("F#\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("F#\r\n");
             break;
         }
     
         case GPIO_PIN_14: {
-            uart.print("G#\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("G#\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("G#\r\n");
             break;
         }
 
         case GPIO_PIN_15: {
-            uart.print("A#\r\n");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+            this->uart.print("A#\r\n");
+            trigger_external_interupt(this->uart);
             //i2c.print("A#\r\n");
             break;
         }
@@ -91,7 +99,7 @@ extern "C" void Keys::react(uint16_t GPIO_Pin) {
 }
 
 
-extern "C" extern "C" void EXTI0_IRQHandler(void) {
+extern "C" void EXTI0_IRQHandler(void) {
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 }
 
