@@ -4,4 +4,4 @@ stages:
 include:
   - local: "central_unit/ci.yml"
   - local: "audio_unit/ci.yml"
-  - local: "keyboard_unit/new/ci.yml"
+  - local: "keyboard_unit/ci.yml"
