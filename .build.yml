@@ -34,6 +34,7 @@ tasks:
       cmake -S . -B build --preset Debug
       cmake --build build --parallel
   - build-keyboard-unit: |
+      cd "$HOME"
       mkdir -p "$HOME/cmsis-toolbox"
       wget -qO- "https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/2.13.0/cmsis-toolbox-linux-amd64.tar.gz" | tar -xz -C "$HOME/cmsis-toolbox" --strip-components=1
       export PATH="$HOME/cmsis-toolbox/bin:$PATH"
