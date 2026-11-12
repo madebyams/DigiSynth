@@ -11,6 +11,7 @@ packages:
   - gcc-13-aarch64-linux-gnu
   - g++-13-aarch64-linux-gnu
   - libnewlib-arm-none-eabi
+  - libstdc++-arm-none-eabi-newlib
   - pkg-config
   - wget
   - ca-certificates
