@@ -44,7 +44,7 @@ tasks:
       GCC_VERSION="$(arm-none-eabi-gcc --version | grep -oP '\d+\.\d+\.\d+' | head -1)"
       GCC_BIN="$(dirname "$(which arm-none-eabi-gcc)")"
       eval "export GCC_TOOLCHAIN_$(echo "$GCC_VERSION" | tr '.' '_')="$GCC_BIN""
-      cd DigiSynth/keyboard_unit/new
+      cd DigiSynth/keyboard_unit
       cbuild "Keyboard Unit.csolution.yml" --packs --toolchain GCC --context ".Debug+STM32F103C8"
       tar -czf out-artifacts.tar.gz out
 artifacts:
