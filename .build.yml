@@ -8,6 +8,8 @@ packages:
   - python3-pip
   - python3-venv
   - gcc-arm-none-eabi
+  - gcc-13-aarch64-linux-gnu
+  - g++-13-aarch64-linux-gnu
   - libnewlib-arm-none-eabi
   - pkg-config
   - wget
@@ -20,6 +22,7 @@ tasks:
       cd DigiSynth/central_unit
       python3 -m pip install --break-system-packages --no-cache-dir conan
       export PATH="$HOME/.local/bin:$PATH"
+      sed -i 's#/usr/bin/aarch64-linux-gnu-gcc$#/usr/bin/aarch64-linux-gnu-gcc-13#; s#/usr/bin/aarch64-linux-gnu-g++$#/usr/bin/aarch64-linux-gnu-g++-13#' conan/rpi.ci.profile
       conan profile detect --force
       conan export conan/pigpio --name=pigpio --version=79
       conan install . --profile:host=conan/rpi.ci.profile --profile:build=default --build=missing
