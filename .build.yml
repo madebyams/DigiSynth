@@ -22,7 +22,7 @@ tasks:
       cd DigiSynth/central_unit
       python3 -m pip install --break-system-packages --no-cache-dir conan
       export PATH="$HOME/.local/bin:$PATH"
-      sed -i 's#/usr/bin/aarch64-linux-gnu-gcc$#/usr/bin/aarch64-linux-gnu-gcc-13#; s#/usr/bin/aarch64-linux-gnu-g++$#/usr/bin/aarch64-linux-gnu-g++-13#' conan/rpi.ci.profile
+      sed -i 's#CXX=/usr/bin/aarch64-linux-gnu-g++#CXX=/usr/bin/aarch64-linux-gnu-g++-13#; s#CC=/usr/bin/aarch64-linux-gnu-gcc#CC=/usr/bin/aarch64-linux-gnu-gcc-13#' conan/rpi.ci.profile
       conan profile detect --force
       conan export conan/pigpio --name=pigpio --version=79
       conan install . --profile:host=conan/rpi.ci.profile --profile:build=default --build=missing
@@ -42,5 +42,6 @@ tasks:
       eval "export GCC_TOOLCHAIN_$(echo "$GCC_VERSION" | tr '.' '_')="$GCC_BIN""
       cd DigiSynth/keyboard_unit/new
       cbuild "Keyboard Unit.csolution.yml" --packs --toolchain GCC --context ".Debug+STM32F103C8"
+      tar -czf out-artifacts.tar.gz out
 artifacts:
-  - DigiSynth/keyboard_unit/new/out/
+  - DigiSynth/keyboard_unit/new/out-artifacts.tar.gz
