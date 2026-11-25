@@ -1,0 +1,97 @@
+name: CI
+
+# Converted from the former builds.sr.ht manifest (.build.yml).
+# Each sourcehut task is one step; $HOME is the workspace, as on sourcehut.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:stable
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    defaults:
+      run:
+        shell: bash -xe {0}
+    steps:
+      - name: Install packages
+        run: |
+          apt-get update
+          apt-get install -y git ca-certificates \
+            build-essential \
+            cmake \
+            ninja-build \
+            git \
+            python3 \
+            python3-pip \
+            python3-venv \
+            gcc-arm-none-eabi \
+            gcc-13-aarch64-linux-gnu \
+            g++-13-aarch64-linux-gnu \
+            libnewlib-arm-none-eabi \
+            libstdc++-arm-none-eabi-newlib \
+            pkg-config \
+            wget \
+            ca-certificates \
+            tar
+
+      - uses: actions/checkout@v4
+        with:
+          path: "DigiSynth"
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: "build-central-unit"
+        run: |
+          export HOME="$GITHUB_WORKSPACE"
+          cd "$HOME"
+          cd DigiSynth/central_unit
+          python3 -m pip install --break-system-packages --no-cache-dir conan
+          export PATH="$HOME/.local/bin:$PATH"
+          sed -i 's#CXX=/usr/bin/aarch64-linux-gnu-g++#CXX=/usr/bin/aarch64-linux-gnu-g++-13#; s#CC=/usr/bin/aarch64-linux-gnu-gcc#CC=/usr/bin/aarch64-linux-gnu-gcc-13#' conan/rpi.ci.profile
+          conan profile detect --force
+          conan export conan/pigpio --name=pigpio --version=79
+          conan install . --profile:host=conan/rpi.ci.profile --profile:build=default --build=missing
+          cmake --preset conan-release
+          cmake --build --preset conan-release --parallel
+
+      - name: "build-audio-unit"
+        run: |
+          export HOME="$GITHUB_WORKSPACE"
+          cd "$HOME"
+          cd DigiSynth/audio_unit
+          cmake -S . -B build --preset Debug
+          cmake --build build --parallel
+
+      - name: "build-keyboard-unit"
+        run: |
+          export HOME="$GITHUB_WORKSPACE"
+          cd "$HOME"
+          cd "$HOME"
+          mkdir -p "$HOME/cmsis-toolbox"
+          wget -qO- "https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/2.13.0/cmsis-toolbox-linux-amd64.tar.gz" | tar -xz -C "$HOME/cmsis-toolbox" --strip-components=1
+          export PATH="$HOME/cmsis-toolbox/bin:$PATH"
+          export CMSIS_PACK_ROOT="$PWD/.cmsis-packs"
+          mkdir -p "$CMSIS_PACK_ROOT"
+          cpackget init https://www.keil.com/pack/index.pidx
+          GCC_VERSION="$(arm-none-eabi-gcc --version | grep -oP '\d+\.\d+\.\d+' | head -1)"
+          GCC_BIN="$(dirname "$(which arm-none-eabi-gcc)")"
+          eval "export GCC_TOOLCHAIN_$(echo "$GCC_VERSION" | tr '.' '_')="$GCC_BIN""
+          cd DigiSynth/keyboard_unit
+          cbuild "Keyboard Unit.csolution.yml" --packs --toolchain GCC --context ".Debug+STM32F103C8"
+          tar -czf out-artifacts.tar.gz out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          if-no-files-found: warn
+          path: |
+            DigiSynth/keyboard_unit/new/out-artifacts.tar.gz
